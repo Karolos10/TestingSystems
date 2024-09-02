@@ -19,6 +19,8 @@ public class Usuario {
 
     private String nombre;
 
+    private String apellidos;
+
     private String email;
 
     private String telefono;
@@ -33,19 +35,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id,
-                   String username,
-                   String password,
-                   String nombre,
-                   String email,
-                   String telefono,
-                   boolean enable,
-                   String perfil,
-                   Set<UsuarioRol> usuarioRoles) {
+    public Usuario(Long id, String username, String password, String nombre, String apellidos, String email, String telefono, boolean enable, String perfil, Set<UsuarioRol> usuarioRoles) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.nombre = nombre;
+        this.apellidos = apellidos;
         this.email = email;
         this.telefono = telefono;
         this.enable = enable;
@@ -83,6 +78,14 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getEmail() {
