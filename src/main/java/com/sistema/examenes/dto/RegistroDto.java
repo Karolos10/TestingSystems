@@ -1,18 +1,6 @@
-package com.sistema.examenes.entity;
+package com.sistema.examenes.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-
-import java.util.HashSet;
-import java.util.Set;
-
-@Entity
-@Table(name = "usuarios")
-public class Usuario {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class RegistroDto {
 
     private String username;
 
@@ -30,15 +18,16 @@ public class Usuario {
 
     private String perfil;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
-    @JsonIgnore
-    private Set<UsuarioRol> usuarioRoles = new HashSet<>();
-
-    public Usuario() {
+    public RegistroDto() {
     }
 
-    public Usuario(Long id, String username, String password, String nombre, String apellidos, String email, String telefono, boolean enable, String perfil, Set<UsuarioRol> usuarioRoles) {
-        this.id = id;
+    public RegistroDto(String username,
+                       String password,
+                       String nombre,
+                       String apellidos,
+                       String email,
+                       String telefono, boolean enable,
+                       String perfil) {
         this.username = username;
         this.password = password;
         this.nombre = nombre;
@@ -47,15 +36,6 @@ public class Usuario {
         this.telefono = telefono;
         this.enable = enable;
         this.perfil = perfil;
-        this.usuarioRoles = usuarioRoles;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -120,13 +100,5 @@ public class Usuario {
 
     public void setPerfil(String perfil) {
         this.perfil = perfil;
-    }
-
-    public Set<UsuarioRol> getUsuarioRoles() {
-        return usuarioRoles;
-    }
-
-    public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
-        this.usuarioRoles = usuarioRoles;
     }
 }
