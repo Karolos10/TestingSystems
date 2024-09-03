@@ -12,13 +12,12 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api/usuarios")
-@CrossOrigin("*")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/post")
+    /*@PostMapping("/post")
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{
 
         usuario.setPerfil("default.png");
@@ -37,14 +36,14 @@ public class UsuarioController {
 
         return usuarioService.saveUser(usuario, usuarioRoles);
 
-    }
+    }*/
 
-    @GetMapping("/{username}")
+    /*@GetMapping("/{username}")
     public Usuario obtenerUsuario(@PathVariable("username") String username){
 
         return usuarioService.obtenerUsuario(username);
 
-    }
+    }*/
 
     @DeleteMapping("/{usuarioId}")
     public void eliminarUsuario(@PathVariable("usuarioId") Long usuarioId){

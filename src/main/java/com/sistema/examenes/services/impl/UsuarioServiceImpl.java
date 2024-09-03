@@ -16,7 +16,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
+    /*@Autowired
     private RolRepository rolRepository;
 
     @Override
@@ -40,7 +40,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario obtenerUsuario(String username) {
         return usuarioRepository.findByUsername(username);
-    }
+    }*/
 
     @Override
     public void eliminarUsuario(Long usuarioId) {
