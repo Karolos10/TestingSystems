@@ -7,6 +7,8 @@ import java.util.Set;
 
 public interface UsuarioService {
 
+    public Usuario obtenerUsuario(String username);
+
 
     public void eliminarUsuario(Long usuarioId);
 }

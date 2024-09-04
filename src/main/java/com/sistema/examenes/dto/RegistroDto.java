@@ -1,7 +1,10 @@
 package com.sistema.examenes.dto;
 
+import java.util.List;
+
 public class RegistroDto {
 
+    private Long usuarioId;
     private String username;
 
     private String password;
@@ -18,16 +21,13 @@ public class RegistroDto {
 
     private String perfil;
 
+    private List<String> roles;
+
     public RegistroDto() {
     }
 
-    public RegistroDto(String username,
-                       String password,
-                       String nombre,
-                       String apellidos,
-                       String email,
-                       String telefono, boolean enable,
-                       String perfil) {
+    public RegistroDto(Long usuarioId, String username, String password, String nombre, String apellidos, String email, String telefono, boolean enable, String perfil, List<String> roles) {
+        this.usuarioId = usuarioId;
         this.username = username;
         this.password = password;
         this.nombre = nombre;
@@ -36,6 +36,15 @@ public class RegistroDto {
         this.telefono = telefono;
         this.enable = enable;
         this.perfil = perfil;
+        this.roles = roles;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public String getUsername() {
@@ -100,5 +109,13 @@ public class RegistroDto {
 
     public void setPerfil(String perfil) {
         this.perfil = perfil;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }
