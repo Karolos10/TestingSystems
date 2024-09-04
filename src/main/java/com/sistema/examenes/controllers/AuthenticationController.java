@@ -9,12 +9,11 @@ import com.sistema.examenes.entity.Usuario;
 import com.sistema.examenes.entity.UsuarioRol;
 import com.sistema.examenes.services.AuthenticationService;
 import com.sistema.examenes.services.impl.JwtService;
+import com.sistema.examenes.services.impl.UserDetailsServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,6 +29,7 @@ public class AuthenticationController {
         this.jwtService = jwtService;
         this.authenticationService = authenticationService;
     }
+
 
     @PostMapping("/signup")
     public ResponseEntity<Usuario> register(@RequestBody RegistroDto registroDto) throws Exception {
@@ -52,4 +52,6 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(loginResponse);
     }
+
+
 }

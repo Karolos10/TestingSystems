@@ -6,11 +6,16 @@ import com.sistema.examenes.entity.Rol;
 import com.sistema.examenes.entity.Usuario;
 import com.sistema.examenes.entity.UsuarioRol;
 import com.sistema.examenes.services.UsuarioService;
+import com.sistema.examenes.services.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,6 +30,12 @@ public class UsuarioController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    private final UserDetailsServiceImpl userDetailsService;
+
+    public UsuarioController(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     /*@PostMapping("/post")
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{
@@ -96,4 +107,44 @@ public class UsuarioController {
     public void eliminarUsuario(@PathVariable("usuarioId") Long usuarioId){
         usuarioService.eliminarUsuario(usuarioId);
     }
+    /*@GetMapping("/usuario-actual")
+    public Usuario obtenerUsuarioActual(Principal principal){
+        return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
+
+    }*/
+
+    @GetMapping("/usuario-actual")
+    public ResponseEntity<RegistroDto> obtenerUsuarioActual(Principal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        try {
+            // Obtener el usuario desde el UserDetailsService
+            UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+            Usuario usuario = (Usuario) userDetails;
+
+            // Crear y llenar el DTO con la información del usuario
+            RegistroDto responseDto = new RegistroDto();
+            responseDto.setUsuarioId(usuario.getId());
+            responseDto.setPassword(passwordEncoder.encode(usuario.getPassword())); // Asegúrate de que esto es necesario
+            responseDto.setUsername(usuario.getUsername());
+            responseDto.setNombre(usuario.getNombre());
+            responseDto.setApellidos(usuario.getApellidos());
+            responseDto.setEmail(usuario.getEmail());
+            responseDto.setTelefono(usuario.getTelefono());
+            responseDto.setPerfil(usuario.getPerfil());
+
+            // Mapear roles
+            List<String> roles = usuario.getUsuarioRoles().stream()
+                    .map(role -> role.getRol().getNombre())
+                    .collect(Collectors.toList());
+            responseDto.setRoles(roles);
+
+            return ResponseEntity.ok(responseDto);
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
 }
