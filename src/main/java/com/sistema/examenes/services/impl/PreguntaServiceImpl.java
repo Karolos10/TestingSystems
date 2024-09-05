@@ -5,9 +5,11 @@ import com.sistema.examenes.entity.Pregunta;
 import com.sistema.examenes.repository.PreguntaRepository;
 import com.sistema.examenes.services.PreguntaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PreguntaServiceImpl implements PreguntaService {
 
     @Autowired
