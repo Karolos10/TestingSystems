@@ -31,14 +31,14 @@ public class ExamenServiceImpl implements ExamenService {
     }
 
     @Override
-    public Examen obtenerExamen(Long examenId) {
-        return examenRepository.findById(examenId).get();
+    public Examen obtenerExamen(Long exameneId) {
+        return examenRepository.findById(exameneId).get();
     }
 
     @Override
-    public void eliminarExamen(Long examenId) {
+    public void eliminarExamen(Long exameneId) {
         Examen examen = new Examen();
-        examen.setExameneId(examenId);
+        examen.setExameneId(exameneId);
         examenRepository.delete(examen);
 
     }

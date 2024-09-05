@@ -12,7 +12,7 @@ public interface ExamenService {
 
     Set<Examen> obtenerExamenes();
 
-    Examen obtenerExamen(Long examenId);
+    Examen obtenerExamen(Long exameneId);
 
-    void eliminarExamen(Long examenId);
+    void eliminarExamen(Long exameneId);
 }
