@@ -24,6 +24,7 @@ public class Pregunta {
 
     private String opcion4;
 
+    @Transient
     private String respuesta;
 
     @ManyToOne(fetch = FetchType.EAGER)
