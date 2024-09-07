@@ -1,10 +1,7 @@
 package com.sistema.examenes.controllers;
 
 import com.sistema.examenes.dto.RegistroDto;
-import com.sistema.examenes.entity.CustomUserDetails;
-import com.sistema.examenes.entity.Rol;
 import com.sistema.examenes.entity.Usuario;
-import com.sistema.examenes.entity.UsuarioRol;
 import com.sistema.examenes.services.UsuarioService;
 import com.sistema.examenes.services.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -36,45 +31,6 @@ public class UsuarioController {
     public UsuarioController(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
-
-    /*@PostMapping("/post")
-    public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{
-
-        usuario.setPerfil("default.png");
-
-        Set<UsuarioRol> usuarioRoles = new HashSet<>();
-
-        Rol rol = new Rol();
-        rol.setRolId(2L);
-        rol.setNombre("NORMAL");
-
-        UsuarioRol usuarioRol = new UsuarioRol();
-        usuarioRol.setUsuario(usuario);
-        usuarioRol.setRol(rol);
-
-        usuarioRoles.add(usuarioRol);
-
-        return usuarioService.saveUser(usuario, usuarioRoles);
-
-    }*/
-
-    /*@GetMapping("/{username}")
-    public Usuario obtenerUsuario(@PathVariable("username") String username){
-
-        return usuarioService.obtenerUsuario(username);
-
-    }*/
-
-    /*@GetMapping("/{username}")
-    public ResponseEntity<CustomUserDetails> obtenerUsuario(@PathVariable("username") String username) {
-        Usuario usuario = usuarioService.obtenerUsuario(username);
-        if (usuario != null) {
-            CustomUserDetails customUserDetails = new CustomUserDetails(usuario);
-            return ResponseEntity.ok(customUserDetails);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }*/
 
     @GetMapping("/{username}")
     public ResponseEntity<RegistroDto> obtenerUsuario(@PathVariable("username") String username) {

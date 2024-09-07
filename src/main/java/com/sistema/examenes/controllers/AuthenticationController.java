@@ -4,18 +4,11 @@ import com.sistema.examenes.dto.LoginDto;
 import com.sistema.examenes.dto.LoginResponde;
 import com.sistema.examenes.dto.RegistroDto;
 import com.sistema.examenes.entity.CustomUserDetails;
-import com.sistema.examenes.entity.Rol;
 import com.sistema.examenes.entity.Usuario;
-import com.sistema.examenes.entity.UsuarioRol;
-import com.sistema.examenes.services.AuthenticationService;
+import com.sistema.examenes.services.impl.AuthenticationService;
 import com.sistema.examenes.services.impl.JwtService;
-import com.sistema.examenes.services.impl.UserDetailsServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
-import java.util.HashSet;
-import java.util.Set;
 
 @RequestMapping("/auth")
 @RestController
